@@ -1,3 +1,5 @@
 *.bak
-UI/pmsys_sim_UI/pmsys_sim_UI/bin/
-UI/pmsys_sim_UI/pmsys_sim_UI/obj/
+*/bin/
+*/obj/
+pmsys_sim_UI/*/bin/
+pmsys_sim_UI/*/obj/
