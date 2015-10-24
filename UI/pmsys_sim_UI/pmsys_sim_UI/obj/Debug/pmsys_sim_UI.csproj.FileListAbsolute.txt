@@ -1,1 +1,10 @@
 C:\Users\Laura\Documents\pmsys_sim\UI\pmsys_sim_UI\pmsys_sim_UI\bin\Debug\pmsys_sim_UI.exe.config
+C:\Users\Laura\Documents\pmsys_sim\UI\pmsys_sim_UI\pmsys_sim_UI\obj\Debug\pmsys_sim_UI.exe
+C:\Users\Laura\Documents\pmsys_sim\UI\pmsys_sim_UI\pmsys_sim_UI\obj\Debug\pmsys_sim_UI.pdb
+C:\Users\Laura\Documents\pmsys_sim\UI\pmsys_sim_UI\pmsys_sim_UI\bin\Debug\pmsys_sim_UI.exe
+C:\Users\Laura\Documents\pmsys_sim\UI\pmsys_sim_UI\pmsys_sim_UI\bin\Debug\pmsys_sim_UI.pdb
+C:\Users\Laura\Documents\pmsys_sim\UI\pmsys_sim_UI\pmsys_sim_UI\obj\Debug\pmsys_sim_UI.csprojResolveAssemblyReference.cache
+C:\Users\Laura\Documents\pmsys_sim\UI\pmsys_sim_UI\pmsys_sim_UI\obj\Debug\pmsys_sim_UI.Form1.resources
+C:\Users\Laura\Documents\pmsys_sim\UI\pmsys_sim_UI\pmsys_sim_UI\obj\Debug\pmsys_sim_UI.Form2.resources
+C:\Users\Laura\Documents\pmsys_sim\UI\pmsys_sim_UI\pmsys_sim_UI\obj\Debug\pmsys_sim_UI.Properties.Resources.resources
+C:\Users\Laura\Documents\pmsys_sim\UI\pmsys_sim_UI\pmsys_sim_UI\obj\Debug\pmsys_sim_UI.csproj.GenerateResource.Cache
