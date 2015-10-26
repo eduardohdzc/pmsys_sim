@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.23107.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "pmsys_sim_UI", "pmsys_sim_UI\pmsys_sim_UI.csproj", "{66CF4800-C9F2-4060-AA98-F03E2651700D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "pmsys_sim_engine", "pmsys_sim_engine\pmsys_sim_engine.csproj", "{CE5263AC-24AB-4BE9-A0C5-22AA3085ADAB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "pmsys_sim_engineTests", "pmsys_sim_engineTests\pmsys_sim_engineTests.csproj", "{DA513045-BFD1-4771-8CBE-498DACC9BCAC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{66CF4800-C9F2-4060-AA98-F03E2651700D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{66CF4800-C9F2-4060-AA98-F03E2651700D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{66CF4800-C9F2-4060-AA98-F03E2651700D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{66CF4800-C9F2-4060-AA98-F03E2651700D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CE5263AC-24AB-4BE9-A0C5-22AA3085ADAB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CE5263AC-24AB-4BE9-A0C5-22AA3085ADAB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CE5263AC-24AB-4BE9-A0C5-22AA3085ADAB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CE5263AC-24AB-4BE9-A0C5-22AA3085ADAB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DA513045-BFD1-4771-8CBE-498DACC9BCAC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DA513045-BFD1-4771-8CBE-498DACC9BCAC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DA513045-BFD1-4771-8CBE-498DACC9BCAC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DA513045-BFD1-4771-8CBE-498DACC9BCAC}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
