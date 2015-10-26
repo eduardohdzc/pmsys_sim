@@ -49,12 +49,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="models\IModel.cs" />
+    <Compile Include="models\ProjectUser.cs" />
     <Compile Include="models\Repository.cs" />
     <Compile Include="models\ActivityModel.cs" />
     <Compile Include="models\ProjectModel.cs" />
     <Compile Include="models\UserActivity.cs" />
     <Compile Include="models\UserModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Report.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.Config" />

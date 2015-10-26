@@ -53,6 +53,7 @@
   <ItemGroup>
     <Compile Include="controllers\RepositoryTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ReportTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\pmsys_sim_engine\pmsys_sim_engine.csproj">

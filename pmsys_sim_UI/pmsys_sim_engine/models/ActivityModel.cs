@@ -6,18 +6,18 @@ using System.Threading.Tasks;
 
 namespace pmsys_sim_engine.models
 {
-    public class ActivityModel: Repository
+    public class ActivityModel: Repository, IModel
     {
 
-        private int m_id;
+        private Int32? m_id;
         private string m_name;
         private string m_description;
         private DateTime m_plannedStart;
         private DateTime m_plannedFinish;
-        private DateTime m_actualStart;
-        private DateTime m_actualFinish;
+        private DateTime? m_actualStart;
+        private DateTime? m_actualFinish;
 
-        public int Id
+        public Int32? Id
         {
             get
             {
@@ -82,7 +82,7 @@ namespace pmsys_sim_engine.models
             }
         }
 
-        public DateTime ActualStart
+        public DateTime? ActualStart
         {
             get
             {
@@ -95,7 +95,7 @@ namespace pmsys_sim_engine.models
             }
         }
 
-        public DateTime ActualFinish
+        public DateTime ?ActualFinish
         {
             get
             {
@@ -116,15 +116,23 @@ namespace pmsys_sim_engine.models
             }
         }
 
-        internal int ProjectId { get; set; }
+        public string TablePK
+        {
+            get
+            {
+                return "act_id";
+            }
+        }
 
-        public int Persist()
+        internal Int32? ProjectId { get; set; }
+
+        public Int32? Persist()
         {
             this.Id = Persist(this);
             return this.Id;
         }
 
-        public void AssignUser(int userId)
+        public void AssignUser(Int32? userId)
         {   
             UserActivity u = new UserActivity();
             u.UserId = userId;
@@ -134,8 +142,21 @@ namespace pmsys_sim_engine.models
             u.Comments = "";
             Persist(u);
         }
-        
-        public void UpdateProgress(int userId, int progress, string comments)
+
+        public void RemoveUser(Int32? userId)
+        {
+            UserActivity u = new UserActivity();
+            u.UserId = userId;
+            u.ProjectId = this.ProjectId;
+            u.ActivityId = this.Id;
+            u.Progress = 0;
+            u.Comments = "";
+            Remove<UserActivity>(u);
+        }
+
+
+
+        public void UpdateProgress(Int32? userId, int progress, string comments)
         {   
             UserActivity u = new UserActivity();
             u.UserId = userId;

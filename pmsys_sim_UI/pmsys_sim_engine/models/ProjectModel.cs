@@ -15,16 +15,16 @@ namespace pmsys_sim_engine.models
 
     }
 
-    public class ProjectModel : Repository
+    public class ProjectModel : Repository, IModel
     {
-        private int m_id;
+        private Int32? m_id;
         private string m_name;
         private string m_description;
         private Boolean m_active;
 
         private List<ActivityModel> m_activities;
 
-        public int Id
+        public Int32? Id
         {
             get
             {
@@ -81,7 +81,15 @@ namespace pmsys_sim_engine.models
             get
             {
                 
-                return "Projects";
+                return "projects";
+            }
+        }
+
+        public string TablePK
+        {
+            get
+            {
+                return "prj_id";
             }
         }
 
@@ -97,23 +105,41 @@ namespace pmsys_sim_engine.models
             }         
         }
 
-        public int Persist()
+        public Int32? Persist()
         {
             this.Id = Persist(this);
 
-            foreach (ActivityModel activity in this.Activities)
+            foreach (ActivityModel activity in m_activities)
             {
-                activity.ProjectId = this.Id;
+                activity.ProjectId = m_id;
                 activity.Persist();                
             }
-
+                      
             return this.Id;
         }
 
-        public void AddUser(UserModel user, Role role)
+        public void AssignUser(UserModel user, Role role)
         {
             LinkUserToProject(this.Id, user.Id, role.ToString());
         }
+
+        private List<UserModel> m_users;
+
+        public List<UserModel> U
+        {
+            set
+            {
+                m_users = value;
+            }
+        }
+
+
+        public List<UserModel> GetUsers()
+        {  
+            return m_users;
+           
+        }
+
             
 
     }

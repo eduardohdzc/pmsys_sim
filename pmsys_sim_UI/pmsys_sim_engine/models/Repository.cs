@@ -16,8 +16,8 @@ namespace pmsys_sim_engine.models
         private static string USERNAME="root";
         private static string PASSWORD="mysql";
         private string SELECT_ALL = "SELECT * FROM {0}";
-        private static Repository m_instance;
-
+        private string DELETE_BY_PK = "DELETE FROM pmsys_db.{0} WHERE {1} = ?pkId";
+        
         private String INSERT_USER =
          "INSERT INTO pmsys_db.users (usr_name, usr_pswd, usr_status, usr_privileges) VALUES " +
              "(?name, ?password, ?status, ?privileges);";
@@ -43,7 +43,7 @@ namespace pmsys_sim_engine.models
             "act_real_start = ?aStart, act_real_finish = ?aFinish WHERE act_id = ?;";
         
         private string INSERT_USER_PROJECT = "INSERT INTO pmsys_db.projects_has_users "+
-            "(projects_prj_id, users_usr_id, role) VALUES (?prjId, ?usrId, ?role)";
+            "(projects_prj_id, users_usr_id, prj_usr_role) VALUES (?prjId, ?usrId, ?role)";
 
         private string INSERT_USER_ACTIVITY = "INSERT INTO pmsys_db.users_has_activities " +
            "(users_usr_id, activities_act_id, activities_projects_prj_id) "+
@@ -56,7 +56,7 @@ namespace pmsys_sim_engine.models
         private string NEXT_ID = "SELECT auto_increment FROM INFORMATION_SCHEMA.TABLES " +
             "WHERE table_schema ='pmsys_db' AND table_name = '{0}'";
 
-        protected Repository()
+        public Repository()
         {
             Initialize();
         }
@@ -96,13 +96,13 @@ namespace pmsys_sim_engine.models
             }
         }
                     
-        protected int Persist(ProjectModel project)
+        protected Int32? Persist(ProjectModel project)
         {
-            int id = 0;
+            Int32? id = 0;
             if (OpenConnection())
             {
                 MySqlCommand cmd;
-                if (project.Id == 0)
+                if (project.Id == null || project.Id == 0)
                 {
                     id = GetNextId(project.TableName);
                     cmd = new MySqlCommand(INSERT_PROJECT, m_connection);
@@ -123,13 +123,13 @@ namespace pmsys_sim_engine.models
             return id;
         }
         
-        protected int Persist(UserModel user)
+        protected Int32? Persist(UserModel user)
         {
-            int id = 0;
+            Int32? id = 0;
             if (OpenConnection())
             {
                 MySqlCommand cmd;
-                if (user.Id == 0)
+                if (user.Id == null || user.Id == 0)
                 {
                     id = GetNextId(user.TableName);
                     cmd = new MySqlCommand(INSERT_USER, m_connection);
@@ -152,13 +152,13 @@ namespace pmsys_sim_engine.models
             return id;
         }
                       
-        protected int Persist(ActivityModel activity)
+        protected Int32? Persist(ActivityModel activity)
         {
-            int id = 0;
+            Int32? id = 0;
             if (OpenConnection())
             {
                 MySqlCommand cmd;
-                if (activity.Id == 0)
+                if (activity.Id == null || activity.Id == 0)
                 {
                     id = GetNextId(activity.TableName);
                     cmd = new MySqlCommand(INSERT_ACTIVITY, m_connection);
@@ -209,7 +209,7 @@ namespace pmsys_sim_engine.models
             }                       
         }
 
-        protected void LinkUserToProject(int projectId, int userId, string role)
+        protected void LinkUserToProject(Int32? projectId, Int32? userId, string role)
         {
             if (OpenConnection())
             {
@@ -238,70 +238,146 @@ namespace pmsys_sim_engine.models
             return id;
         }
 
-        void Remove()
+        public void Remove<T>(T model) where T : IModel
         {
+            if (OpenConnection())
+            {
 
+                MySqlCommand cmd;
+
+                Type modelType = typeof(T);
+
+                if (modelType == typeof(UserActivity))
+                {
+                    string qry = DELETE_BY_PK + " AND {2} = ?pkId2 AND {3} = ?pkId3;" ;
+
+                    cmd = new MySqlCommand(string.Format(qry,
+                        Activator.CreateInstance<T>().TableName,
+                        "users_usr_id", "activities_act_id", "activities_projects_prj_id"),
+                        m_connection);
+
+                    UserActivity us = (UserActivity)Convert.ChangeType(model, typeof(UserActivity));
+
+                    cmd.Parameters.AddWithValue("?pkId", us.ActivityId);
+                    cmd.Parameters.AddWithValue("?pkId2", us.ProjectId);
+                    cmd.Parameters.AddWithValue("?pkId3", us.UserId);
+                }
+                else
+                {
+                    cmd = new MySqlCommand(string.Format(DELETE_BY_PK,
+                        Activator.CreateInstance<T>().TableName, Activator.CreateInstance<T>().TablePK),
+                        m_connection);
+                    cmd.Parameters.AddWithValue("?pkId", model.Id);
+                }
+
+                cmd.ExecuteNonQuery();
+                CloseConnection();
+            }
 
         }
 
-        void Get(int id)
+        public List<T> GetAll<T>() where T : IModel
         {
+            if (OpenConnection())
+            {
+                MySqlCommand cmd = new MySqlCommand(string.Format(SELECT_ALL,
+                    Activator.CreateInstance<T>().TableName), m_connection);
+                               
+                MySqlDataReader dataReader = cmd.ExecuteReader();
 
+                List<T> resultList = new List<T>();
+                while (dataReader.Read())
+                {
+                    resultList.Add(CreateModel<T>(dataReader));
+                }
+
+                dataReader.Close();
+                CloseConnection();
+
+                return resultList;
+            }
+            return new List<T>();
         }
 
-        //public List<T> GetAll<T>() where T : IModel
-        //{
-        //    if (OpenConnection())
-        //    {                
-        //        MySqlCommand cmd = new MySqlCommand(string.Format(SELECT_ALL, 
-        //            Activator.CreateInstance<T>().TableName), m_connection);
-        //        MySqlDataReader dataReader = cmd.ExecuteReader();
-
-        //        List<T> resultList = new List<T>();
-        //        while (dataReader.Read())
-        //        {
-        //            resultList.Add(CreateModel<T>(dataReader));                    
-        //        }
+        private string CreateWhereClasuse(List<MySqlParameter> sqlParams)
+        {
+            StringBuilder where = new StringBuilder(" WHERE ");
+            
+            for (int i = 0; i < sqlParams.Count; i++)
+            {               
+                MySqlParameter currSqlParam = sqlParams[i];
+                string format = currSqlParam.Value is string ? "{0}='{1}'" : "{0}={1}";
                 
-        //        dataReader.Close();
-        //        CloseConnection();
+                where.AppendFormat(format, currSqlParam.ParameterName.Replace("?",""), currSqlParam.Value);
 
-        //        return resultList;
-        //    }
-        //    return new List<T>();
-        //}
+                if (i+1 == sqlParams.Count)
+                {
+                    where.Append(";");
+                }
+                else
+                {
+                    where.Append(",");
+                }
+            }
+            
+            return where.ToString();
+        }
 
         private T CreateModel<T>(MySqlDataReader dataReader) 
         {
             Type modelType = typeof(T);
-            
-            if (modelType == typeof(UserModel)){
+
+            if (modelType == typeof(UserModel)) {
                 UserModel user = new UserModel();
                 user.Id = dataReader.GetInt32(0);
                 user.Name = dataReader.GetString(1);
-                
-                user.Privileges =(UserModel.UserPrivileges) 
+
+                user.Privileges = (UserModel.UserPrivileges)
                     Enum.Parse(typeof(UserModel.UserPrivileges), dataReader.GetString(4));
                 return (T)Convert.ChangeType(user, typeof(T));
             }
-            else if(modelType == typeof(ProjectModel)){
+            else if (modelType == typeof(ProjectModel)) {
                 ProjectModel projectModel = new ProjectModel();
                 projectModel.Id = dataReader.GetInt32(0);
                 projectModel.Name = dataReader.GetString(1);
-                projectModel.Description = dataReader.GetString(2);                
+                projectModel.Description = dataReader.IsDBNull(2) ? null : dataReader.GetString(2);
                 return (T)Convert.ChangeType(projectModel, typeof(T));
             }
-            else if(modelType == typeof(ActivityModel)){
+            else if (modelType == typeof(ActivityModel)) {
                 ActivityModel activity = new ActivityModel();
                 activity.Id = dataReader.GetInt32(0);
                 activity.Name = dataReader.GetString(1);
-                activity.Description = dataReader.GetString(2);
+                activity.Description = dataReader.IsDBNull(2) ? null : dataReader.GetString(2);
                 activity.PlannedStart = dataReader.GetDateTime(3);
-                activity.PlannedFinish= dataReader.GetDateTime(4);
-                activity.ActualStart = dataReader.GetDateTime(5);
-                activity.ActualFinish = dataReader.GetDateTime(6);
+                activity.PlannedFinish = dataReader.GetDateTime(4);
+                activity.ActualStart = dataReader.IsDBNull(5) ?  (DateTime?)null : dataReader.GetDateTime(5);
+                activity.ActualFinish = dataReader.IsDBNull(6) ? (DateTime?)null : dataReader.GetDateTime(6);
                 return (T)Convert.ChangeType(activity, typeof(T));
-            }            
+            } else if (modelType == typeof(ProjectUser))
+            {
+                ProjectUser projectUser = new ProjectUser();
+                projectUser.Project.Id = dataReader.GetInt32(0);
+                projectUser.Project.Name = dataReader.GetString(1);
+                projectUser.Project.Description = dataReader.IsDBNull(2) ? null : dataReader.GetString(2);
+                projectUser.Project.Active = dataReader.GetBoolean(3);
+
+                projectUser.User.Name = dataReader.IsDBNull(5) ? null : dataReader.GetString(5);
+                
+                
+                    projectUser.User.Id = dataReader.IsDBNull(4)? (int?) null : dataReader.GetInt32(4);
+                    
+                    projectUser.User.Privileges = dataReader.IsDBNull(6) ? (UserModel.UserPrivileges?) null : 
+                        (UserModel.UserPrivileges)Enum.Parse(typeof(UserModel.UserPrivileges), dataReader.GetString(6));
+
+                    projectUser.Role = dataReader.IsDBNull(7) ?(Role?) null : 
+                        (Role)Enum.Parse(typeof(Role), dataReader.GetString(7));
+
+                    projectUser.User.Active = dataReader.IsDBNull(8) ? false : dataReader.GetBoolean(8);
+                
+               
+                
+                return (T)Convert.ChangeType(projectUser, typeof(T));
+            }
 
             return default(T); 
         }          

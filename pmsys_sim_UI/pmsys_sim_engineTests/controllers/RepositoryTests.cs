@@ -12,11 +12,15 @@ namespace pmsys_sim_engine.Tests
     public class RepositoryTests
     {
         [TestMethod()]
-        public void GetAllTest()
+        public void GetAll()
         {
-           // Repository repository = Repository.Instance;
-           // List<UserModel> userList = repository.GetAll<UserModel>();
-                        
+            Repository repository = new Repository();
+
+            List<UserModel> userList = repository.GetAll<UserModel>();
+            List<ProjectModel> projects = repository.GetAll<ProjectModel>();
+            List<ActivityModel> activities = repository.GetAll<ActivityModel>();
+            List<ProjectUser> projectsUsers = repository.GetAll<ProjectUser>();
+
         }
 
         [TestMethod()]
@@ -45,11 +49,25 @@ namespace pmsys_sim_engine.Tests
             project.Activities.Add(activity);
             project.Persist();
             
-            project.AddUser(user, Role.DEVELOPER);
+            project.AssignUser(user, Role.DEVELOPER);
 
             project.Activities[0].AssignUser(user.Id);
             project.Activities[0].UpdateProgress(user.Id, 100, "finish");
 
+
+            project.Activities[0].RemoveUser(user.Id);
+
+        }
+
+
+        [TestMethod()]
+        public void Remove()
+        {
+            Repository repository = new Repository();
+            UserModel user = new UserModel();
+            user.Id = 9;
+            repository.Remove<UserModel>(user);
+            
 
         }
 

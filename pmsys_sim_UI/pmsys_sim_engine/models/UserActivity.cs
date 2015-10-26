@@ -6,15 +6,15 @@ using System.Threading.Tasks;
 
 namespace pmsys_sim_engine.models
 {
-    public class UserActivity
+    public class UserActivity : IModel
     {
-        private int userId;
-        private int projectId;
-        private int activityId;
+        private Int32? userId;
+        private Int32? projectId;
+        private Int32? activityId;
         private int progress;
         private string comments;
 
-        public int UserId
+        public Int32? UserId
         {
             get
             {
@@ -27,7 +27,7 @@ namespace pmsys_sim_engine.models
             }
         }
 
-        public int ProjectId
+        public Int32? ProjectId
         {
             get
             {
@@ -40,7 +40,7 @@ namespace pmsys_sim_engine.models
             }
         }
 
-        public int ActivityId
+        public Int32? ActivityId
         {
             get
             {
@@ -76,6 +76,35 @@ namespace pmsys_sim_engine.models
             set
             {
                 comments = value;
+            }
+        }
+
+        public string TableName
+        {
+            get
+            {
+                return "users_has_activities";
+            }
+        }
+
+        public string TablePK
+        {
+            get
+            {
+                return "users_usr_id";
+            }
+        }
+
+        public int? Id
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+
+            set
+            {
+                throw new NotImplementedException();
             }
         }
     }

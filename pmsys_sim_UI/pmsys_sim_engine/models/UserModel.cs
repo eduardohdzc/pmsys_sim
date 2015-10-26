@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,20 +7,26 @@ using System.Threading.Tasks;
 
 namespace pmsys_sim_engine.models
 {
-    public class UserModel:Repository
+    public class UserModel:Repository, IModel
     {
-        private int m_id;
+        public static string FIELD_ID = "?usr_id";
+        public static string FIELD_NAME = "?usr_name";
+        public static string FIELD_STATUS = "?usr_status";
+        public static string FIELD_PRIVILEGES = "?usr_privileges";
+        
+
+        private Int32? m_id;
         private string m_name;
         private string m_pswd;
         private Boolean m_active;
-
+        
         public enum UserPrivileges {
             USER,
             ADMIN
         }
 
 
-        public int Id
+        public Int32? Id
         {
             get
             {
@@ -31,7 +38,7 @@ namespace pmsys_sim_engine.models
                 m_id = value;
             }
         }
-
+        
         public string Name
         {
             get
@@ -40,7 +47,7 @@ namespace pmsys_sim_engine.models
             }
 
             set
-            {
+            {              
                 m_name = value;
             }
         }
@@ -75,13 +82,21 @@ namespace pmsys_sim_engine.models
         {
             get
             {
-                return "Users";
+                return "users";
             }
         }
 
-        public UserPrivileges Privileges { get; set; }
+        public UserPrivileges? Privileges { get; set; }
 
-        public int Persist()
+        public string TablePK
+        {
+            get
+            {
+                return "usr_id";
+            }
+        }
+
+        public Int32? Persist()
         {
             this.Id = Persist(this);
             return Id;
