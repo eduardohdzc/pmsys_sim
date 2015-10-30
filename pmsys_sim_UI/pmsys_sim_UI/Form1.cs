@@ -13,8 +13,15 @@ namespace pmsys_sim_UI
 {
     public partial class Form1 : Form
     {
-        public Form1()
+        private UserModel m_currentUser;
+
+        public Form1(UserModel user)
         {
+            //Form2 login = new Form2();
+            //login.m
+
+            m_currentUser = user;
+
             InitializeComponent();
         }
 
@@ -58,10 +65,10 @@ namespace pmsys_sim_UI
 
             foreach (ProjectUser pr in project)
             {
-                if(pr.Id.Equals(2))
+                if (pr.User.Id== m_currentUser.Id)
                 {
-
-                    comboBox5.Items.Add(pr.Id);
+                    
+                    comboBox5.Items.Add(pr.Project.Name);
                 }
                 
 
@@ -77,6 +84,21 @@ namespace pmsys_sim_UI
         }
 
         private void comboBox5_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Form1_FormClosed(object sender, FormClosedEventArgs e)
         {
 
         }

@@ -16,8 +16,13 @@ namespace pmsys_sim_UI
     
     public partial class Form2 : Form
     {
+
+        UserModel m_user;
+
+
         public Form2()
         {
+            
             InitializeComponent();
         }
 
@@ -99,7 +104,15 @@ namespace pmsys_sim_UI
                                      user.Privileges = UserModel.UserPrivileges.USER;
                                      user.Id = user.Persist();
                                      System.Windows.Forms.MessageBox.Show("User correctly created");
-                                     textBox1.Clear();
+
+
+
+                            var ventana = new Form1(user);
+                            ventana.Show();
+                            this.Hide();
+
+
+                            textBox1.Clear();
                                      textBox2.Clear();
                                      textBox3.Clear();
                                      checkBox1.Checked = false;
@@ -127,10 +140,10 @@ namespace pmsys_sim_UI
                             valid = true;
                             if (us.Pswd.Equals(textBox2.Text))
                             {
-                           
-                            var ventana = new Form1();
 
+                            var ventana = new Form1(us);
                             ventana.Show();
+                            this.Hide();
                             break;
                             }
                             else

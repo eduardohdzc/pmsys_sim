@@ -14,7 +14,7 @@ namespace pmsys_sim_engine.models
         private static string SERVER="localhost";
         private static string DATABASE="pmsys_db";
         private static string USERNAME="root";
-        private static string PASSWORD="MySQL";
+        private static string PASSWORD="mysql";
         private string SELECT_ALL = "SELECT * FROM {0}";
         private string DELETE_BY_PK = "DELETE FROM pmsys_db.{0} WHERE {1} = ?pkId";
         

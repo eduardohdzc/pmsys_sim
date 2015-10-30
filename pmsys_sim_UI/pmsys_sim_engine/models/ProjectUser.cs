@@ -74,18 +74,18 @@ namespace pmsys_sim_engine.models
             }
         }
 
-        public int Id
-        {
-            get
-            {
-                throw new NotImplementedException();
-            }
+        //public int Id
+        //{
+        //    get
+        //    {
+        //        throw new NotImplementedException();
+        //    }
 
-            set
-            {
-                throw new NotImplementedException();
-            }
-        }
+        //    set
+        //    {
+        //        throw new NotImplementedException();
+        //    }
+        //}
 
         int? IModel.Id
         {

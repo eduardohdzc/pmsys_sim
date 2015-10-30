@@ -150,6 +150,7 @@
             this.button3.TabIndex = 5;
             this.button3.Text = "Print Report";
             this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // label9
             // 
@@ -396,6 +397,7 @@
             this.button2.TabIndex = 10;
             this.button2.Text = "OK";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // comboBox3
             // 
@@ -494,6 +496,7 @@
             this.Controls.Add(this.Proyecto);
             this.Name = "Form1";
             this.Text = "Project Name";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Form1_FormClosed);
             this.Load += new System.EventHandler(this.Form1_Load);
             this.Proyecto.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
