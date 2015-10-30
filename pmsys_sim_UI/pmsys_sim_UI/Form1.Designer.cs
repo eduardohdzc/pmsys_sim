@@ -41,6 +41,11 @@
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.UserName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Role = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Assignations = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.State = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.comboBox6 = new System.Windows.Forms.ComboBox();
             this.label12 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
@@ -51,6 +56,11 @@
             this.label3 = new System.Windows.Forms.Label();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
+            this.ProjectName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.People = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Roles = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TasksAssigned = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TasksState = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label7 = new System.Windows.Forms.Label();
             this.button2 = new System.Windows.Forms.Button();
             this.comboBox3 = new System.Windows.Forms.ComboBox();
@@ -63,16 +73,6 @@
             this.Progress = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.comboBox7 = new System.Windows.Forms.ComboBox();
             this.label13 = new System.Windows.Forms.Label();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.UserName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Role = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Assignations = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.State = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ProjectName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.People = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Roles = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TasksAssigned = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TasksState = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Proyecto.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -113,6 +113,7 @@
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Reportes";
             this.tabPage1.UseVisualStyleBackColor = true;
+            this.tabPage1.Click += new System.EventHandler(this.tabPage1_Click);
             // 
             // label11
             // 
@@ -130,6 +131,7 @@
             this.comboBox5.Name = "comboBox5";
             this.comboBox5.Size = new System.Drawing.Size(152, 21);
             this.comboBox5.TabIndex = 7;
+            this.comboBox5.SelectedIndexChanged += new System.EventHandler(this.comboBox5_SelectedIndexChanged);
             // 
             // label10
             // 
@@ -226,6 +228,31 @@
             this.dataGridView1.Size = new System.Drawing.Size(721, 243);
             this.dataGridView1.TabIndex = 9;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
+            // 
+            // Column1
+            // 
+            this.Column1.HeaderText = "User Name";
+            this.Column1.Name = "Column1";
+            // 
+            // UserName
+            // 
+            this.UserName.HeaderText = "Proyect";
+            this.UserName.Name = "UserName";
+            // 
+            // Role
+            // 
+            this.Role.HeaderText = "Role";
+            this.Role.Name = "Role";
+            // 
+            // Assignations
+            // 
+            this.Assignations.HeaderText = "Assignations";
+            this.Assignations.Name = "Assignations";
+            // 
+            // State
+            // 
+            this.State.HeaderText = "State";
+            this.State.Name = "State";
             // 
             // comboBox6
             // 
@@ -326,6 +353,31 @@
             this.dataGridView2.Name = "dataGridView2";
             this.dataGridView2.Size = new System.Drawing.Size(710, 248);
             this.dataGridView2.TabIndex = 12;
+            // 
+            // ProjectName
+            // 
+            this.ProjectName.HeaderText = "Project Name";
+            this.ProjectName.Name = "ProjectName";
+            // 
+            // People
+            // 
+            this.People.HeaderText = "People";
+            this.People.Name = "People";
+            // 
+            // Roles
+            // 
+            this.Roles.HeaderText = "Roles";
+            this.Roles.Name = "Roles";
+            // 
+            // TasksAssigned
+            // 
+            this.TasksAssigned.HeaderText = "TasksAssigned";
+            this.TasksAssigned.Name = "TasksAssigned";
+            // 
+            // TasksState
+            // 
+            this.TasksState.HeaderText = "TasksState";
+            this.TasksState.Name = "TasksState";
             // 
             // label7
             // 
@@ -432,56 +484,6 @@
             this.label13.Size = new System.Drawing.Size(43, 13);
             this.label13.TabIndex = 0;
             this.label13.Text = "Project:";
-            // 
-            // Column1
-            // 
-            this.Column1.HeaderText = "User Name";
-            this.Column1.Name = "Column1";
-            // 
-            // UserName
-            // 
-            this.UserName.HeaderText = "Proyect";
-            this.UserName.Name = "UserName";
-            // 
-            // Role
-            // 
-            this.Role.HeaderText = "Role";
-            this.Role.Name = "Role";
-            // 
-            // Assignations
-            // 
-            this.Assignations.HeaderText = "Assignations";
-            this.Assignations.Name = "Assignations";
-            // 
-            // State
-            // 
-            this.State.HeaderText = "State";
-            this.State.Name = "State";
-            // 
-            // ProjectName
-            // 
-            this.ProjectName.HeaderText = "Project Name";
-            this.ProjectName.Name = "ProjectName";
-            // 
-            // People
-            // 
-            this.People.HeaderText = "People";
-            this.People.Name = "People";
-            // 
-            // Roles
-            // 
-            this.Roles.HeaderText = "Roles";
-            this.Roles.Name = "Roles";
-            // 
-            // TasksAssigned
-            // 
-            this.TasksAssigned.HeaderText = "TasksAssigned";
-            this.TasksAssigned.Name = "TasksAssigned";
-            // 
-            // TasksState
-            // 
-            this.TasksState.HeaderText = "TasksState";
-            this.TasksState.Name = "TasksState";
             // 
             // Form1
             // 

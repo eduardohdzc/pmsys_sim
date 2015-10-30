@@ -13,6 +13,7 @@ namespace pmsys_sim_engine.models
         public static string FIELD_NAME = "?usr_name";
         public static string FIELD_STATUS = "?usr_status";
         public static string FIELD_PRIVILEGES = "?usr_privileges";
+        public static string FIELD_PSWD= "?usr_pswd";
         
 
         private Int32? m_id;
