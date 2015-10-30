@@ -28,11 +28,12 @@ namespace pmsys_sim_engine.Tests
         {
             UserModel user = new UserModel();
 
-            user.Name = "user";
-            user.Pswd = "pswd";
+            user.Name = "chiun";
+            user.Pswd = "4321";
             user.Privileges = UserModel.UserPrivileges.USER;
             user.Id = user.Persist();
 
+           
             ProjectModel project = new ProjectModel();
             project.Name = "projectName";
             project.Description = "description";
@@ -45,7 +46,7 @@ namespace pmsys_sim_engine.Tests
             activity.PlannedFinish = new DateTime();
             activity.ActualStart = new DateTime();
             activity.ActualFinish = new DateTime();
-
+            
             project.Activities.Add(activity);
             project.Persist();
             
@@ -65,7 +66,7 @@ namespace pmsys_sim_engine.Tests
         {
             Repository repository = new Repository();
             UserModel user = new UserModel();
-            user.Id = 9;
+            user.Id = 4;
             repository.Remove<UserModel>(user);
             
 

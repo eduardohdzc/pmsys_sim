@@ -4,6 +4,9 @@ SELECT * FROM pmsys_db.activities;
 SELECT * FROM pmsys_db.users_has_activities;
 SELECT * FROM pmsys_db.projects_has_users;
 
+delete from pmsys_db.users
+where user_name = ´chelo´;
+
 INSERT INTO pmsys_db.users_has_activities 
            (users_usr_id, activities_act_id, activities_projects_prj_id) 
             VALUES (1,1,1);
