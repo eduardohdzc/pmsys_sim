@@ -32,6 +32,8 @@ namespace pmsys_sim_UI
         private string SELECT_ALL = "SELECT * FROM {0}";
         private string proact ="";
         private string actname ="";
+        private string idfinal = "";
+        private string userfinal = "";
 
         public Form1(UserModel user)
         {
@@ -137,19 +139,17 @@ namespace pmsys_sim_UI
             List<ProjectUser> project6 = repository6.GetAll<ProjectUser>();
             ProjectUser prj6 = new ProjectUser();
 
-            // foreach (ActivityModel pm in project5)
-            // {
-                //for(i {
-                //actname = pm.projectid + "";
-                //}
-            //}
+            Repository repository7 = new Repository();
+            List<UserActivity> project7 = repository7.GetAll<UserActivity>();
+            UserActivity prj7 = new UserActivity();
 
+  
             string idproyecto = comboBox4.SelectedIndex + "";
             string role;
             string usname;
             string prname;
-            //Dim string proact ="";
             string practive;
+            
 
 			foreach (ProjectUser pr in project4){
 			    if(pr.Project.Id==(comboBox4.SelectedIndex + 1)){
@@ -157,23 +157,37 @@ namespace pmsys_sim_UI
 			        {
 			        	if (pr.Project.Id == am.projectid )
 			            {
-			            	proact = am.Name + "";
-			                role = pr.Role + "";
-			                usname = pr.User.Name + "";
-			                prname = pr.Project.Name + "";
-			                practive = pr.Project.Active + "";
-			                //dataGridView2.Rows.Add
-			                dataGridView2.Rows.Add(new object[] { prname, usname, role, proact, practive });
-			                //dataGridView2.Rows.Add(New String(){role, usname, prname});
+                            idfinal = am.Id + "";
+                            proact = am.Name + "";
+
+                            foreach (UserActivity ua in project7)
+                            {
+                                idfinal=idfinal;
+                                if ((idfinal.Equals(ua.ActivityId + "")) && pr.Project.Id == ua.ProjectId)
+                                {
+
+                                    userfinal = ua.UserId + "";
+
+                                    if ((pr.User.Id + "").Equals(userfinal))
+                                    {
+                                        role = pr.Role + "";
+                                        usname = pr.User.Name + "";
+                                        prname = pr.Project.Name + "";
+                                        practive = pr.Project.Active + "";
+
+                                        dataGridView2.Rows.Add(new object[] { prname, usname, role, proact, practive });
+                                       
+                                    }
+
+
+                                }
+
+
+                            }
+			               
 			            }
 			        }
-			        // role = pr.Role + "";
-			        // usname = pr.User.Name + "";
-			        // prname = pr.Project.Name + "";
-			        // practive = pr.Project.Active + "";
-			        // //dataGridView2.Rows.Add
-			        // dataGridView2.Rows.Add(new object[] { prname, usname, role, proact, practive });
-			        // //dataGridView2.Rows.Add(New String(){role, usname, prname});
+			        
 			    }
 			}
         }
