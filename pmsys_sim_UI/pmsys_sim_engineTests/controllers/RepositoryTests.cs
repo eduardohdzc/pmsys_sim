@@ -53,8 +53,8 @@ namespace pmsys_sim_engine.Tests
             project.AssignUser(user, Role.LEAD);
 
             project.Activities[0].AssignUser(user.Id);
-            project.Activities[0].UpdateProgress(user.Id, 100, "finish");
 
+            project.Activities[0].UpdateProgress(user.Id, 100, "finish");
 
             //project.Activities[0].RemoveUser(user.Id);
 

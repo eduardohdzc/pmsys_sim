@@ -394,6 +394,7 @@ namespace pmsys_sim_UI
                                 if (ua.ActivityId == act.Id && ua.ProjectId == pm.Project.Id)
                                 {
                                     comboBox7.Items.Add(act.Name);
+                                    comboBox7.SelectedItem = act.Id;
                                 }
                             }
                             //break;
@@ -408,6 +409,54 @@ namespace pmsys_sim_UI
     
         private void button7_Click(object sender, EventArgs e)
         {
+            string dbConnectionString = "Server=localhost;Database=pmsys_db;Uid=root;Password=MySQL";
+            int temp = Convert.ToInt32(textBox7.Text);
+                MySqlConnection db = new MySqlConnection(dbConnectionString);
+                MySqlCommand dbCommand = db.CreateCommand();
+                dbCommand.CommandText = "UPDATE users_has_activities SET usr_act_progress=" + temp + " WHERE activities_act_id= " + (comboBox7.SelectedIndex + 1);
+                db.Open();
+                dbCommand.ExecuteNonQuery();
+                db.Close();
+
+            Repository repository4 = new Repository();
+            List<UserActivity> project4 = repository4.GetAll<UserActivity>();
+            UserActivity prj4 = new UserActivity();
+
+            Repository repository5 = new Repository();
+            List<ProjectModel> project5 = repository5.GetAll<ProjectModel>();
+            ProjectModel prj5 = new ProjectModel();
+
+            Repository repository6 = new Repository();
+            List<ActivityModel> project6 = repository6.GetAll<ActivityModel>();
+            ActivityModel prj6 = new ActivityModel();
+
+               foreach(UserActivity ua in project4)
+               {
+                   if (ua.ActivityId == (comboBox7.SelectedIndex)+1)
+                   {
+                      // ua.Progress = Convert.ToInt32(textBox7.Text);
+                       prj6.UpdateProgress(ua.UserId,Convert.ToInt32(textBox7.Text),"yeah");
+                       //UpdateProgress(Int32? userId, int progress, string comments)
+                      // ua.Activities[0].UpdateProgress(user.Id, 100, "finish");
+                   }
+               }
+                //comboBox7
+            
+        }
+
+        private void comboBox7_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Repository repository6 = new Repository();
+            List<UserActivity> project6 = repository6.GetAll<UserActivity>();
+            UserActivity prj6 = new UserActivity();
+
+            foreach (UserActivity ua in project6)
+            {
+                if (ua.UserId == (comboBox7.SelectedIndex + 1))
+                {
+                    textBox7.Text = ua.Progress + "";
+                }
+            }
 
         }
     }
