@@ -139,8 +139,6 @@ namespace pmsys_sim_UI
                 string idchingon2 = pr.Project.Id + "";
 
 
-
-                
                 string idcurrent = m_currentUser.Id + ""; 
                if (pr.User.Id== m_currentUser.Id)
                {
@@ -155,11 +153,6 @@ namespace pmsys_sim_UI
                            comboBox11.SelectedItem = comboBox5.FindStringExact(pm.Id + "");
                            comboBox4.Items.Add(pm.Name);
                            comboBox4.SelectedItem = comboBox4.FindStringExact(pm.Id + "");
-
-                          
-
-                         
-                           
 
                        }
                    }                  
@@ -204,14 +197,14 @@ namespace pmsys_sim_UI
 
 
 
-            foreach (ActivityModel pm in project5)
-            {
+           // foreach (ActivityModel pm in project5)
+           // {
                 //for(i {
 
 
-                actname = pm.projectid + "";
+             //   actname = pm.projectid + "";
                 //}
-            }
+           // }
 
             string idproyecto = comboBox4.SelectedIndex + "";
             string role;
@@ -225,20 +218,29 @@ namespace pmsys_sim_UI
 
                         foreach (ActivityModel am in project5)
                         {
-                            if ((pr.Project.Activities + "") == am.Name)
+                            if (pr.Project.Id == am.projectid )
                             {
                                 proact = am.Name + "";
+                                role = pr.Role + "";
+                                usname = pr.User.Name + "";
+                                prname = pr.Project.Name + "";
+                                practive = pr.Project.Active + "";
+                                //dataGridView2.Rows.Add
+                                dataGridView2.Rows.Add(new object[] { prname, usname, role, proact, practive });
+                                //dataGridView2.Rows.Add(New String(){role, usname, prname});
+                                
                             }
+                            
                         }
                         
                         
-                        role = pr.Role + "";
-                        usname = pr.User.Name + "";
-                        prname = pr.Project.Name + "";
-                        practive = pr.Project.Active + "";
-                        //dataGridView2.Rows.Add
-                        dataGridView2.Rows.Add(new object[] { prname, usname, role, proact, practive });
-                        //dataGridView2.Rows.Add(New String(){role, usname, prname});
+                      // role = pr.Role + "";
+                      // usname = pr.User.Name + "";
+                      // prname = pr.Project.Name + "";
+                      // practive = pr.Project.Active + "";
+                      // //dataGridView2.Rows.Add
+                      // dataGridView2.Rows.Add(new object[] { prname, usname, role, proact, practive });
+                      // //dataGridView2.Rows.Add(New String(){role, usname, prname});
                     }
                 }
 

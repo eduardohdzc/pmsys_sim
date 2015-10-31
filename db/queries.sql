@@ -4,6 +4,8 @@ SELECT * FROM pmsys_db.activities;
 SELECT * FROM pmsys_db.users_has_activities;
 SELECT * FROM pmsys_db.projects_has_users;
 
+
+
 delete from pmsys_db.users
 where user_name = ´chelo´;
 
@@ -38,13 +40,23 @@ AND pmsys_db.activities.act_id = pmsys_db.users_has_activities.activities_act_id
 AND pmsys_db.users.usr_id = pmsys_db.users_has_activities.users_usr_id);
 
 
--- users in project
+-- users in projectview1view1view1
 SELECT projects.prj_id, projects.prj_name, projects.prj_description, users.usr_name, 
 projects_has_users.prj_usr_role FROM pmsys_db.projects 
 LEFT JOIN (pmsys_db.projects_has_users, pmsys_db.users)
 ON(pmsys_db.projects.prj_id = pmsys_db.projects_has_users.projects_prj_id
 AND pmsys_db.projects_has_users.users_usr_id = pmsys_db.users.usr_id) 
 WHERE projects.prj_status=1 AND users.usr_status = 1;
+
+SELECT * FROM project_user;
+
+CREATE VIEW `project_user` AS
+   SELECT projects.prj_id, projects.prj_name, projects.prj_description, projects.prj_status,
+users.usr_id, users.usr_name, users.usr_privileges, projects_has_users.prj_usr_role, users.usr_status 
+FROM pmsys_db.projects 
+LEFT JOIN (pmsys_db.projects_has_users, pmsys_db.users)
+ON(pmsys_db.projects.prj_id = pmsys_db.projects_has_users.projects_prj_id
+AND pmsys_db.projects_has_users.users_usr_id = pmsys_db.users.usr_id);
 
 SELECT projects.prj_id, projects.prj_name, projects.prj_description, projects.prj_status,
 users.usr_id, users.usr_name, users.usr_privileges, projects_has_users.prj_usr_role, users.usr_status 
