@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using MySql.Data.MySqlClient;
 
+
 namespace pmsys_sim_engine.models
 {
     public class Repository        
@@ -17,6 +18,7 @@ namespace pmsys_sim_engine.models
         private static string PASSWORD="MySQL";
         private string SELECT_ALL = "SELECT * FROM {0}";
         private string DELETE_BY_PK = "DELETE FROM pmsys_db.{0} WHERE {1} = ?pkId";
+
         
         private String INSERT_USER =
          "INSERT INTO pmsys_db.users (usr_name, usr_pswd, usr_status, usr_privileges) VALUES " +
@@ -379,6 +381,17 @@ namespace pmsys_sim_engine.models
                
                 
                 return (T)Convert.ChangeType(projectUser, typeof(T));
+            }
+            else if (modelType == typeof(UserActivity))
+            {
+                UserActivity userAct = new UserActivity();
+                userAct.UserId = dataReader.GetInt32(0);
+                userAct.ActivityId = dataReader.GetInt32(1);
+                userAct.ProjectId = dataReader.GetInt32(2);
+                userAct.Progress = dataReader.GetInt32(3);
+                userAct.Comments = dataReader.IsDBNull(4) ? null : dataReader.GetString(4); 
+
+                return (T)Convert.ChangeType(userAct, typeof(T));
             }
 
             return default(T); 

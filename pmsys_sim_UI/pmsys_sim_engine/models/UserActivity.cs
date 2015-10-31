@@ -11,7 +11,7 @@ namespace pmsys_sim_engine.models
         private Int32? userId;
         private Int32? projectId;
         private Int32? activityId;
-        private int progress;
+        private int? progress =0;
         private string comments;
 
         public Int32? UserId
@@ -53,7 +53,7 @@ namespace pmsys_sim_engine.models
             }
         }
 
-        public int Progress
+        public int? Progress
         {
             get
             {

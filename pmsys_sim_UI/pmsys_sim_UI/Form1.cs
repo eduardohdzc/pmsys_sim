@@ -34,6 +34,7 @@ namespace pmsys_sim_UI
         private string actname ="";
         private string idfinal = "";
         private string userfinal = "";
+        private UserModel usr2;
 
         public Form1(UserModel user)
         {
@@ -127,6 +128,10 @@ namespace pmsys_sim_UI
 
         private void button2_Click(object sender, EventArgs e)
         {
+            this.dataGridView2.DataSource = null;
+            this.dataGridView2.Rows.Clear();
+           
+
             Repository repository4 = new Repository();
             List<ProjectUser> project4 = repository4.GetAll<ProjectUser>();
             ProjectUser prj4 = new ProjectUser();
@@ -162,7 +167,7 @@ namespace pmsys_sim_UI
 
                             foreach (UserActivity ua in project7)
                             {
-                                idfinal=idfinal;
+                               
                                 if ((idfinal.Equals(ua.ActivityId + "")) && pr.Project.Id == ua.ProjectId)
                                 {
 
@@ -244,6 +249,9 @@ namespace pmsys_sim_UI
 
         private void button6_Click(object sender, EventArgs e)
         {
+
+            bool valid = false;
+            bool exist = false;
             ProjectModel project = new ProjectModel();
             if (comboBox11.Text == "" || label19.Text == "DEVELOPER")
             {
@@ -257,7 +265,11 @@ namespace pmsys_sim_UI
                     {
                         Repository repository = new Repository();
                         List<ProjectModel> projects = repository.GetAll<ProjectModel>();
-                        List<UserModel> userList = repository.GetAll<UserModel>();
+                        ProjectModel prj7 = new ProjectModel();
+
+                        Repository repository2 = new Repository();
+                        List<UserModel> userList = repository2.GetAll<UserModel>();
+                        UserModel prj8 = new UserModel();
 
                         foreach (ProjectModel pr in projects)
                         {
@@ -276,14 +288,38 @@ namespace pmsys_sim_UI
                                 {
                                     if(usr.Name.Equals(comboBox10.Text))
                                     {
+                                        usr2 = usr;
                                         activity.AssignUser(usr.Id);
-                                     pr.AssignUser(usr, pmsys_sim_engine.models.Role.DEVELOPER);
-                                   
-                                        // pr.Persist();
-                                        //pr.AssignUser(usr, pmsys_sim_engine.models.Role.DEVELOPER);
-                                        //pr.Activities[1].AssignUser(usr.Id);
-                                    }
+
+                                         Repository repository3 = new Repository();
+                                         List<ProjectUser> users = repository3.GetAll<ProjectUser>();
+                                         ProjectUser prj9 = new ProjectUser();
+
+                                         foreach (ProjectUser ex in users)
+                                            {
+                                                if (ex.User.Name.Equals(comboBox10.Text))
+                                                {                                                   
+                                                        if (ex.Project.Id == (1 + comboBox11.SelectedIndex))
+                                                        {
+                                                            //System.Windows.Forms.MessageBox.Show("User already exists.");
+                                                            valid = true;
+                                                            exist = true;
+                                                            break;
+                                                        }
+
+                                                } 
+
+                                            } break; 
+                                    } 
                                 }
+
+                                if (exist == false)
+                                {
+                                    pr.AssignUser(usr2, pmsys_sim_engine.models.Role.DEVELOPER);
+
+                                }
+
+
                             }
                         }
                     }
@@ -322,6 +358,57 @@ namespace pmsys_sim_UI
         private void button5_Click_1(object sender, EventArgs e)
         {
             this.Hide();
+        }
+
+        private void label9_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void comboBox5_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            comboBox7.Items.Clear();
+
+            Repository repository2 = new Repository();
+            List<UserActivity> project2 = repository2.GetAll<UserActivity>();
+            UserActivity prj2 = new UserActivity();
+
+            Repository repository3 = new Repository();
+            List<ProjectUser> project3 = repository3.GetAll<ProjectUser>();
+            ProjectUser prj3 = new ProjectUser();
+
+            Repository repository4 = new Repository();
+            List<ActivityModel> project4 = repository4.GetAll<ActivityModel>();
+            ActivityModel prj4 = new ActivityModel();
+
+            foreach (ProjectUser pm in project3)
+            {
+                if (pm.Project.Name == comboBox5.Text)
+                {
+                    foreach (UserActivity ua in project2)
+                    {
+                        if (m_currentUser.Id == ua.UserId)
+                        {
+                            foreach (ActivityModel act in project4)
+                            {
+                                if (ua.ActivityId == act.Id && ua.ProjectId == pm.Project.Id)
+                                {
+                                    comboBox7.Items.Add(act.Name);
+                                }
+                            }
+                            //break;
+                        }
+
+                    } break;
+                   
+                }
+            }
+        }
+
+    
+        private void button7_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

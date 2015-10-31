@@ -101,6 +101,9 @@
             this.Progress = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Tasks = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.button5 = new System.Windows.Forms.Button();
+            this.comboBox7 = new System.Windows.Forms.ComboBox();
+            this.textBox7 = new System.Windows.Forms.TextBox();
+            this.button7 = new System.Windows.Forms.Button();
             this.Proyecto.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -126,6 +129,9 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.button7);
+            this.tabPage1.Controls.Add(this.textBox7);
+            this.tabPage1.Controls.Add(this.comboBox7);
             this.tabPage1.Controls.Add(this.label11);
             this.tabPage1.Controls.Add(this.comboBox5);
             this.tabPage1.Controls.Add(this.label10);
@@ -148,9 +154,9 @@
             this.label11.AutoSize = true;
             this.label11.Location = new System.Drawing.Point(583, 80);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(90, 13);
+            this.label11.Size = new System.Drawing.Size(15, 13);
             this.label11.TabIndex = 8;
-            this.label11.Text = "Participants roles:";
+            this.label11.Text = "%";
             // 
             // comboBox5
             // 
@@ -159,6 +165,7 @@
             this.comboBox5.Name = "comboBox5";
             this.comboBox5.Size = new System.Drawing.Size(152, 21);
             this.comboBox5.TabIndex = 7;
+            this.comboBox5.SelectedIndexChanged += new System.EventHandler(this.comboBox5_SelectedIndexChanged);
             // 
             // label10
             // 
@@ -183,9 +190,10 @@
             this.label9.AutoSize = true;
             this.label9.Location = new System.Drawing.Point(398, 80);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(72, 13);
+            this.label9.Size = new System.Drawing.Size(36, 13);
             this.label9.TabIndex = 4;
-            this.label9.Text = "Tasks Status:";
+            this.label9.Text = "Tasks";
+            this.label9.Click += new System.EventHandler(this.label9_Click);
             // 
             // label2
             // 
@@ -704,7 +712,7 @@
             // 
             // button6
             // 
-            this.button6.Location = new System.Drawing.Point(195, 301);
+            this.button6.Location = new System.Drawing.Point(188, 300);
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(158, 25);
             this.button6.TabIndex = 26;
@@ -755,7 +763,7 @@
             this.Tasks.Name = "Tasks";
             this.Tasks.ReadOnly = true;
             this.Tasks.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            //
+            // 
             // button5
             // 
             this.button5.Location = new System.Drawing.Point(710, 17);
@@ -765,7 +773,32 @@
             this.button5.Text = "Log Out";
             this.button5.UseVisualStyleBackColor = true;
             this.button5.Click += new System.EventHandler(this.button5_Click_1);
-            //  
+            // 
+            // comboBox7
+            // 
+            this.comboBox7.FormattingEnabled = true;
+            this.comboBox7.Location = new System.Drawing.Point(407, 104);
+            this.comboBox7.Name = "comboBox7";
+            this.comboBox7.Size = new System.Drawing.Size(120, 21);
+            this.comboBox7.TabIndex = 9;
+            // 
+            // textBox7
+            // 
+            this.textBox7.Location = new System.Drawing.Point(580, 100);
+            this.textBox7.Name = "textBox7";
+            this.textBox7.Size = new System.Drawing.Size(59, 20);
+            this.textBox7.TabIndex = 10;
+            // 
+            // button7
+            // 
+            this.button7.Location = new System.Drawing.Point(462, 184);
+            this.button7.Name = "button7";
+            this.button7.Size = new System.Drawing.Size(75, 23);
+            this.button7.TabIndex = 11;
+            this.button7.Text = "Update";
+            this.button7.UseVisualStyleBackColor = true;
+            this.button7.Click += new System.EventHandler(this.button7_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -870,6 +903,9 @@
         private System.Windows.Forms.Label label19;
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.ComboBox comboBox7;
+        private System.Windows.Forms.TextBox textBox7;
+        private System.Windows.Forms.Button button7;
     }
 }
 
