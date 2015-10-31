@@ -9,54 +9,20 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using pmsys_sim_engine.models;
 
-
-
 namespace pmsys_sim_UI
 {
-    
-    public partial class Form2 : Form
+	public partial class Form2 : Form
     {
-
         UserModel m_user;
-
-
+        
         public Form2()
         {
-            
             InitializeComponent();
-        }
-
-        private void label2_Click(object sender, EventArgs e)
-        {
-
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
-           
-
-            System.Windows.Forms.MessageBox.Show("Enter user and password");
-
-            
-
-
-        }
-
-        private void label3_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox3_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void Form2_Load(object sender, EventArgs e)
-        {
-
-        
-
+        	System.Windows.Forms.MessageBox.Show("Enter user and password.");
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -77,7 +43,7 @@ namespace pmsys_sim_UI
                     {
                         if (ex.Name.Equals(textBox1.Text))
                         {
-                            System.Windows.Forms.MessageBox.Show("User alrready exists");
+                            System.Windows.Forms.MessageBox.Show("User already exists.");
                             valid = true;
                             exist = true;
                             break;
@@ -92,87 +58,67 @@ namespace pmsys_sim_UI
                     {
                        
                         if ((textBox1.Text == "") || (textBox2.Text == "") || (textBox3.Text == ""))
+                        {
+                        	System.Windows.Forms.MessageBox.Show("Invalid data.");
+                       	}
+                       	else
+                        {
+							if (textBox2.Text == textBox3.Text)
+							{
+							    UserModel user = new UserModel();
+							
+							    user.Name = textBox1.Text;
+							    user.Pswd = textBox2.Text;
+							    user.Privileges = UserModel.UserPrivileges.USER;
+							    user.Id = user.Persist();
+							    System.Windows.Forms.MessageBox.Show("User correctly created.");
+							
+							    textBox1.Clear();
+							    textBox2.Clear();
+							    textBox3.Clear();
+							    checkBox1.Checked = false;
+							
+							    var ventana = new Form1(user);
+							    ventana.Show();
+							}
+                            else
                             {
-                                System.Windows.Forms.MessageBox.Show("Invalid data");
-                            }
-                      else
-                             {
-                                 if (textBox2.Text == textBox3.Text)
-                                 {
-                                     UserModel user = new UserModel();
-                         
-                                     user.Name = textBox1.Text;
-                                     user.Pswd = textBox2.Text;
-                                     user.Privileges = UserModel.UserPrivileges.USER;
-                                     user.Id = user.Persist();
-                                     System.Windows.Forms.MessageBox.Show("User correctly created");
-
-                                     textBox1.Clear();
-                                     textBox2.Clear();
-                                     textBox3.Clear();
-                                     checkBox1.Checked = false;
-
-                            var ventana = new Form1(user);
-                            ventana.Show();
-                           // this.Hide();
-
-
-                            
+                            	System.Windows.Forms.MessageBox.Show("Password does not mach.");
                                  }
-                                 else
-                                 {
-                                     System.Windows.Forms.MessageBox.Show("Password does not mach");
-                                 }
-                         
-                             }
-                      
-                        valid = true;
-
-                    }
-
+                         	}
+                         	valid = true;
+                    	}
                 }
                 else
                 {
-
-                 foreach (UserModel us in users)
-                 {              
-              
-                      if( us.Name.Equals(textBox1.Text))
+                	foreach (UserModel us in users)
+                	{              
+                		if( us.Name.Equals(textBox1.Text))
                         {
                             valid = true;
                             if (us.Pswd.Equals(textBox2.Text))
                             {
-
-                            var ventana = new Form1(us);
-                            ventana.Show();
-                            //this.Hide();
-                            break;
+                            	var ventana = new Form1(us);
+                            	ventana.Show();
+								break;
                             }
                             else
                             {
                                 System.Windows.Forms.MessageBox.Show("incorrect password");
                                 break;
-                             }
+                            }
                         }
-           
                     }
                 }
-
                 if (!valid)
                 {
                     System.Windows.Forms.MessageBox.Show("User does not exist");
                 }
-        
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            textBox1.Clear();
-            textBox2.Clear();
-            textBox3.Clear();
-            checkBox1.Checked = false;
-
-
+            Application.Exit();
         }
 
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
@@ -180,12 +126,19 @@ namespace pmsys_sim_UI
             if (checkBox1.Checked)
             {
                 label3.Enabled = true;
+                label3.Visible = true;
                 textBox3.Enabled = true;
+                textBox3.Visible = true;
+                textBox2.Text = "";
+                textBox2.PasswordChar = '\0';
             }
             else
             {
                 label3.Enabled = false;
+                label3.Visible = false;
                 textBox3.Enabled = false;
+                textBox3.Visible = false;
+                textBox2.PasswordChar = '*';
             }
         }
     }

@@ -56,11 +56,11 @@
             this.label2.Size = new System.Drawing.Size(56, 13);
             this.label2.TabIndex = 1;
             this.label2.Text = "Password:";
-            this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // textBox1
             // 
             this.textBox1.Location = new System.Drawing.Point(101, 21);
+            this.textBox1.MaxLength = 50;
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(170, 20);
             this.textBox1.TabIndex = 2;
@@ -68,7 +68,9 @@
             // textBox2
             // 
             this.textBox2.Location = new System.Drawing.Point(101, 47);
+            this.textBox2.MaxLength = 50;
             this.textBox2.Name = "textBox2";
+            this.textBox2.PasswordChar = '*';
             this.textBox2.Size = new System.Drawing.Size(170, 20);
             this.textBox2.TabIndex = 3;
             // 
@@ -88,7 +90,7 @@
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(75, 23);
             this.button2.TabIndex = 5;
-            this.button2.Text = "Cancell";
+            this.button2.Text = "Close";
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
@@ -96,10 +98,11 @@
             // 
             this.textBox3.Enabled = false;
             this.textBox3.Location = new System.Drawing.Point(101, 73);
+            this.textBox3.MaxLength = 50;
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(170, 20);
             this.textBox3.TabIndex = 8;
-            this.textBox3.TextChanged += new System.EventHandler(this.textBox3_TextChanged);
+            this.textBox3.Visible = false;
             // 
             // label3
             // 
@@ -110,7 +113,7 @@
             this.label3.Size = new System.Drawing.Size(94, 13);
             this.label3.TabIndex = 7;
             this.label3.Text = "Repeat Password:";
-            this.label3.Click += new System.EventHandler(this.label3_Click);
+            this.label3.Visible = false;
             // 
             // checkBox1
             // 
@@ -138,8 +141,8 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Name = "Form2";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Log in";
-            this.Load += new System.EventHandler(this.Form2_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
