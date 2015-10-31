@@ -35,6 +35,11 @@ namespace pmsys_sim_UI
         private string idfinal = "";
         private string userfinal = "";
         private UserModel usr2;
+        private int acum;
+        private int contador = 0;
+        private string idactividadt;
+        private string idactividadt2;
+        private string idactividadt3;
 
         public Form1(UserModel user)
         {
@@ -368,6 +373,10 @@ namespace pmsys_sim_UI
         private void comboBox5_SelectedIndexChanged(object sender, EventArgs e)
         {
             comboBox7.Items.Clear();
+            progressBar1.Increment(0);
+            contador = 0;
+            acum = 0;
+            progressBar1.Value = 0;
 
             Repository repository2 = new Repository();
             List<UserActivity> project2 = repository2.GetAll<UserActivity>();
@@ -380,6 +389,43 @@ namespace pmsys_sim_UI
             Repository repository4 = new Repository();
             List<ActivityModel> project4 = repository4.GetAll<ActivityModel>();
             ActivityModel prj4 = new ActivityModel();
+
+            Repository repository10 = new Repository();
+            List<ProjectModel> project10 = repository10.GetAll<ProjectModel>();
+            ProjectModel prj10 = new ProjectModel();
+
+            foreach (ProjectModel amo1 in project10)
+            {
+                string ab = comboBox5.SelectedItem + "";
+                if (ab.Equals(amo1.Name))
+                {
+                    idactividadt3 = amo1.Id + "";
+                   
+                }
+            }
+            
+
+            foreach (UserActivity uact in project2)
+            {
+                if (idactividadt3.Equals(uact.ProjectId+"")&&m_currentUser.Id == uact.UserId)
+                {
+                    
+                    acum = acum +  Convert.ToInt32(uact.Progress);
+                    contador = contador + 1;
+                    
+                }
+            }
+            if (contador == 0)
+            {
+                acum =0;
+            }
+            else
+            {
+                acum /= contador;
+
+            }
+            
+            progressBar1.Increment(acum);
 
             foreach (ProjectUser pm in project3)
             {
@@ -409,11 +455,24 @@ namespace pmsys_sim_UI
     
         private void button7_Click(object sender, EventArgs e)
         {
+            Repository repository8 = new Repository();
+            List<ActivityModel> project8 = repository8.GetAll<ActivityModel>();
+            ActivityModel prj8 = new ActivityModel();
+
+            foreach (ActivityModel amo in project8)
+            {
+                string ab = comboBox7.SelectedItem + "";
+                if (ab.Equals(amo.Name))
+                {
+                    idactividadt = amo.Id + "";
+                }
+            }
+
             string dbConnectionString = "Server=localhost;Database=pmsys_db;Uid=root;Password=MySQL";
             int temp = Convert.ToInt32(textBox7.Text);
                 MySqlConnection db = new MySqlConnection(dbConnectionString);
                 MySqlCommand dbCommand = db.CreateCommand();
-                dbCommand.CommandText = "UPDATE users_has_activities SET usr_act_progress=" + temp + " WHERE activities_act_id= " + (comboBox7.SelectedIndex + 1);
+                dbCommand.CommandText = "UPDATE users_has_activities SET usr_act_progress=" + temp + " WHERE activities_act_id=" + idactividadt + " AND users_usr_id=" + m_currentUser.Id;
                 db.Open();
                 dbCommand.ExecuteNonQuery();
                 db.Close();
@@ -446,13 +505,26 @@ namespace pmsys_sim_UI
 
         private void comboBox7_SelectedIndexChanged(object sender, EventArgs e)
         {
+            Repository repository9 = new Repository();
+            List<ActivityModel> project9 = repository9.GetAll<ActivityModel>();
+            ActivityModel prj9 = new ActivityModel();
+
+            foreach (ActivityModel amo in project9)
+            {
+                string ab = comboBox7.SelectedItem + "";
+                if (ab.Equals(amo.Name))
+                {
+                    idactividadt2 = amo.Id + "";
+                }
+            }
+            
             Repository repository6 = new Repository();
             List<UserActivity> project6 = repository6.GetAll<UserActivity>();
             UserActivity prj6 = new UserActivity();
-
+            
             foreach (UserActivity ua in project6)
             {
-                if (ua.UserId == (comboBox7.SelectedIndex + 1))
+                if (ua.ActivityId == Convert.ToInt32(idactividadt2))
                 {
                     textBox7.Text = ua.Progress + "";
                 }
