@@ -34,6 +34,8 @@ namespace pmsys_sim_UI
         private static string PASSWORD = "MySQL";
         private string SELECT_PROID = "SELECT projects.prj_id FROM {0}";
         private string SELECT_ALL = "SELECT * FROM {0}";
+        private string proact ="";
+          private string actname ="";
 
         public Form1(UserModel user)
         {
@@ -136,9 +138,9 @@ namespace pmsys_sim_UI
                 string idchingon = pr.User.Id + "" ;
                 string idchingon2 = pr.Project.Id + "";
 
-              
-                
 
+
+                
                 string idcurrent = m_currentUser.Id + ""; 
                if (pr.User.Id== m_currentUser.Id)
                {
@@ -153,6 +155,8 @@ namespace pmsys_sim_UI
                            comboBox11.SelectedItem = comboBox5.FindStringExact(pm.Id + "");
                            comboBox4.Items.Add(pm.Name);
                            comboBox4.SelectedItem = comboBox4.FindStringExact(pm.Id + "");
+
+                          
 
                          
                            
@@ -190,24 +194,50 @@ namespace pmsys_sim_UI
             List<ProjectUser> project4 = repository4.GetAll<ProjectUser>();
             ProjectUser prj4 = new ProjectUser();
 
+            Repository repository5 = new Repository();
+            List<ActivityModel> project5 = repository5.GetAll<ActivityModel>();
+            ActivityModel prj5 = new ActivityModel();
+
+            Repository repository6 = new Repository();
+            List<ProjectUser> project6 = repository6.GetAll<ProjectUser>();
+            ProjectUser prj6 = new ProjectUser();
+
+
+
+            foreach (ActivityModel pm in project5)
+            {
+                //for(i {
+
+
+                actname = pm.projectid + "";
+                //}
+            }
 
             string idproyecto = comboBox4.SelectedIndex + "";
             string role;
             string usname;
             string prname;
-            string proact;
+            //Dim string proact ="";
             string practive;
 
                 foreach (ProjectUser pr in project4){
                     if(pr.Project.Id==(comboBox4.SelectedIndex + 1)){
 
-                        proact = pr.Project.Activities + "";
+                        foreach (ActivityModel am in project5)
+                        {
+                            if ((pr.Project.Activities + "") == am.Name)
+                            {
+                                proact = am.Name + "";
+                            }
+                        }
+                        
+                        
                         role = pr.Role + "";
                         usname = pr.User.Name + "";
                         prname = pr.Project.Name + "";
                         practive = pr.Project.Active + "";
                         //dataGridView2.Rows.Add
-                        dataGridView2.Rows.Add(new object[] {prname,usname,role,proact});
+                        dataGridView2.Rows.Add(new object[] { prname, usname, role, proact, practive });
                         //dataGridView2.Rows.Add(New String(){role, usname, prname});
                     }
                 }

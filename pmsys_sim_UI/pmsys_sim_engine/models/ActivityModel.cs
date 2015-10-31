@@ -16,6 +16,7 @@ namespace pmsys_sim_engine.models
         private DateTime m_plannedFinish;
         private DateTime? m_actualStart;
         private DateTime? m_actualFinish;
+        private Int32? m_projectid; 
 
         public Int32? Id
         {
@@ -27,6 +28,19 @@ namespace pmsys_sim_engine.models
             set
             {
                 m_id = value;
+            }
+        }
+
+        public Int32? projectid
+        {
+            get
+            {
+                return m_projectid;
+            }
+
+            set
+            {
+                m_projectid = value;
             }
         }
 

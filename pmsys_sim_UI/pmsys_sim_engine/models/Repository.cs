@@ -353,6 +353,7 @@ namespace pmsys_sim_engine.models
                 activity.PlannedFinish = dataReader.GetDateTime(4);
                 activity.ActualStart = dataReader.IsDBNull(5) ?  (DateTime?)null : dataReader.GetDateTime(5);
                 activity.ActualFinish = dataReader.IsDBNull(6) ? (DateTime?)null : dataReader.GetDateTime(6);
+                activity.projectid = dataReader.GetInt32(7);
                 return (T)Convert.ChangeType(activity, typeof(T));
             } else if (modelType == typeof(ProjectUser))
             {
