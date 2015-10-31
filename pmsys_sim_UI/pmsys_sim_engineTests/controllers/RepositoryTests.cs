@@ -28,9 +28,9 @@ namespace pmsys_sim_engine.Tests
         {
             UserModel user = new UserModel();
 
-            user.Name = "chiun";
-            user.Pswd = "4321";
-            user.Privileges = UserModel.UserPrivileges.USER;
+            user.Name = "admin";
+            user.Pswd = "admin";
+            user.Privileges = UserModel.UserPrivileges.ADMIN;
             user.Id = user.Persist();
 
            
@@ -50,7 +50,7 @@ namespace pmsys_sim_engine.Tests
             project.Activities.Add(activity);
             project.Persist();
             
-            project.AssignUser(user, Role.DEVELOPER);
+            project.AssignUser(user, Role.LEAD);
 
             project.Activities[0].AssignUser(user.Id);
             project.Activities[0].UpdateProgress(user.Id, 100, "finish");

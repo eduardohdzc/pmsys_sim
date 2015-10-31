@@ -55,6 +55,8 @@ namespace pmsys_sim_UI
         private void Form2_Load(object sender, EventArgs e)
         {
 
+        
+
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -105,17 +107,17 @@ namespace pmsys_sim_UI
                                      user.Id = user.Persist();
                                      System.Windows.Forms.MessageBox.Show("User correctly created");
 
-
-
-                            var ventana = new Form1(user);
-                            ventana.Show();
-                            this.Hide();
-
-
-                            textBox1.Clear();
+                                     textBox1.Clear();
                                      textBox2.Clear();
                                      textBox3.Clear();
                                      checkBox1.Checked = false;
+
+                            var ventana = new Form1(user);
+                            ventana.Show();
+                           // this.Hide();
+
+
+                            
                                  }
                                  else
                                  {
@@ -143,7 +145,7 @@ namespace pmsys_sim_UI
 
                             var ventana = new Form1(us);
                             ventana.Show();
-                            this.Hide();
+                            //this.Hide();
                             break;
                             }
                             else

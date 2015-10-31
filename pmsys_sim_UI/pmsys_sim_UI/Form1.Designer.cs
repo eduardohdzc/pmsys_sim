@@ -68,11 +68,38 @@
             this.comboBox4 = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
             this.tabPage4 = new System.Windows.Forms.TabPage();
-            this.dataGridView3 = new System.Windows.Forms.DataGridView();
-            this.Tasks = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Progress = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.comboBox7 = new System.Windows.Forms.ComboBox();
+            this.monthCalendar2 = new System.Windows.Forms.MonthCalendar();
+            this.monthCalendar1 = new System.Windows.Forms.MonthCalendar();
+            this.label21 = new System.Windows.Forms.Label();
+            this.label20 = new System.Windows.Forms.Label();
+            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.label17 = new System.Windows.Forms.Label();
+            this.label16 = new System.Windows.Forms.Label();
+            this.label15 = new System.Windows.Forms.Label();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.label14 = new System.Windows.Forms.Label();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.button4 = new System.Windows.Forms.Button();
             this.label13 = new System.Windows.Forms.Label();
+            this.tabPage5 = new System.Windows.Forms.TabPage();
+            this.label19 = new System.Windows.Forms.Label();
+            this.label18 = new System.Windows.Forms.Label();
+            this.comboBox11 = new System.Windows.Forms.ComboBox();
+            this.label28 = new System.Windows.Forms.Label();
+            this.monthCalendar3 = new System.Windows.Forms.MonthCalendar();
+            this.monthCalendar4 = new System.Windows.Forms.MonthCalendar();
+            this.label22 = new System.Windows.Forms.Label();
+            this.label23 = new System.Windows.Forms.Label();
+            this.comboBox10 = new System.Windows.Forms.ComboBox();
+            this.label25 = new System.Windows.Forms.Label();
+            this.button6 = new System.Windows.Forms.Button();
+            this.textBox5 = new System.Windows.Forms.TextBox();
+            this.textBox6 = new System.Windows.Forms.TextBox();
+            this.label26 = new System.Windows.Forms.Label();
+            this.label27 = new System.Windows.Forms.Label();
+            this.Progress = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Tasks = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Proyecto.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -80,7 +107,7 @@
             this.tabPage3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.tabPage4.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).BeginInit();
+            this.tabPage5.SuspendLayout();
             this.SuspendLayout();
             // 
             // Proyecto
@@ -89,6 +116,7 @@
             this.Proyecto.Controls.Add(this.tabPage2);
             this.Proyecto.Controls.Add(this.tabPage3);
             this.Proyecto.Controls.Add(this.tabPage4);
+            this.Proyecto.Controls.Add(this.tabPage5);
             this.Proyecto.Location = new System.Drawing.Point(1, 12);
             this.Proyecto.Name = "Proyecto";
             this.Proyecto.SelectedIndex = 0;
@@ -436,27 +464,298 @@
             // 
             // tabPage4
             // 
-            this.tabPage4.Controls.Add(this.dataGridView3);
-            this.tabPage4.Controls.Add(this.comboBox7);
+            this.tabPage4.Controls.Add(this.monthCalendar2);
+            this.tabPage4.Controls.Add(this.monthCalendar1);
+            this.tabPage4.Controls.Add(this.label21);
+            this.tabPage4.Controls.Add(this.label20);
+            this.tabPage4.Controls.Add(this.textBox4);
+            this.tabPage4.Controls.Add(this.textBox3);
+            this.tabPage4.Controls.Add(this.label17);
+            this.tabPage4.Controls.Add(this.label16);
+            this.tabPage4.Controls.Add(this.label15);
+            this.tabPage4.Controls.Add(this.textBox2);
+            this.tabPage4.Controls.Add(this.label14);
+            this.tabPage4.Controls.Add(this.textBox1);
+            this.tabPage4.Controls.Add(this.button4);
             this.tabPage4.Controls.Add(this.label13);
             this.tabPage4.Location = new System.Drawing.Point(4, 22);
             this.tabPage4.Name = "tabPage4";
             this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage4.Size = new System.Drawing.Size(783, 346);
             this.tabPage4.TabIndex = 3;
-            this.tabPage4.Text = "tabPage4";
+            this.tabPage4.Text = "Project Creation";
             this.tabPage4.UseVisualStyleBackColor = true;
             // 
-            // dataGridView3
+            // monthCalendar2
             // 
-            this.dataGridView3.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView3.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Tasks,
-            this.Progress});
-            this.dataGridView3.Location = new System.Drawing.Point(19, 69);
-            this.dataGridView3.Name = "dataGridView3";
-            this.dataGridView3.Size = new System.Drawing.Size(521, 259);
-            this.dataGridView3.TabIndex = 2;
+            this.monthCalendar2.Location = new System.Drawing.Point(301, 135);
+            this.monthCalendar2.Name = "monthCalendar2";
+            this.monthCalendar2.TabIndex = 20;
+            // 
+            // monthCalendar1
+            // 
+            this.monthCalendar1.Location = new System.Drawing.Point(22, 130);
+            this.monthCalendar1.Name = "monthCalendar1";
+            this.monthCalendar1.TabIndex = 19;
+            this.monthCalendar1.DateChanged += new System.Windows.Forms.DateRangeEventHandler(this.monthCalendar1_DateChanged);
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Location = new System.Drawing.Point(298, 113);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(91, 13);
+            this.label21.TabIndex = 16;
+            this.label21.Text = "Activity Finish day";
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Location = new System.Drawing.Point(19, 113);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(86, 13);
+            this.label20.TabIndex = 15;
+            this.label20.Text = "Activity Start day";
+            this.label20.Click += new System.EventHandler(this.label20_Click);
+            // 
+            // textBox4
+            // 
+            this.textBox4.Location = new System.Drawing.Point(213, 75);
+            this.textBox4.Name = "textBox4";
+            this.textBox4.Size = new System.Drawing.Size(158, 20);
+            this.textBox4.TabIndex = 9;
+            // 
+            // textBox3
+            // 
+            this.textBox3.Location = new System.Drawing.Point(22, 75);
+            this.textBox3.Name = "textBox3";
+            this.textBox3.Size = new System.Drawing.Size(162, 20);
+            this.textBox3.TabIndex = 8;
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Location = new System.Drawing.Point(210, 59);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(97, 13);
+            this.label17.TabIndex = 7;
+            this.label17.Text = "Activity Description";
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(19, 59);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(72, 13);
+            this.label16.TabIndex = 6;
+            this.label16.Text = "Activity Name";
+            this.label16.Click += new System.EventHandler(this.label16_Click);
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(210, 11);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(96, 13);
+            this.label15.TabIndex = 5;
+            this.label15.Text = "Project Description";
+            this.label15.Click += new System.EventHandler(this.label15_Click);
+            // 
+            // textBox2
+            // 
+            this.textBox2.Location = new System.Drawing.Point(213, 27);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(158, 20);
+            this.textBox2.TabIndex = 4;
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(19, 11);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(74, 13);
+            this.label14.TabIndex = 3;
+            this.label14.Text = "Proyect Name";
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(22, 27);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(162, 20);
+            this.textBox1.TabIndex = 2;
+            // 
+            // button4
+            // 
+            this.button4.Location = new System.Drawing.Point(196, 304);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(175, 23);
+            this.button4.TabIndex = 1;
+            this.button4.Text = "Create Project";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(20, 23);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(0, 13);
+            this.label13.TabIndex = 0;
+            // 
+            // tabPage5
+            // 
+            this.tabPage5.Controls.Add(this.label19);
+            this.tabPage5.Controls.Add(this.label18);
+            this.tabPage5.Controls.Add(this.comboBox11);
+            this.tabPage5.Controls.Add(this.label28);
+            this.tabPage5.Controls.Add(this.monthCalendar3);
+            this.tabPage5.Controls.Add(this.monthCalendar4);
+            this.tabPage5.Controls.Add(this.label22);
+            this.tabPage5.Controls.Add(this.label23);
+            this.tabPage5.Controls.Add(this.comboBox10);
+            this.tabPage5.Controls.Add(this.label25);
+            this.tabPage5.Controls.Add(this.button6);
+            this.tabPage5.Controls.Add(this.textBox5);
+            this.tabPage5.Controls.Add(this.textBox6);
+            this.tabPage5.Controls.Add(this.label26);
+            this.tabPage5.Controls.Add(this.label27);
+            this.tabPage5.Location = new System.Drawing.Point(4, 22);
+            this.tabPage5.Name = "tabPage5";
+            this.tabPage5.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage5.Size = new System.Drawing.Size(783, 346);
+            this.tabPage5.TabIndex = 4;
+            this.tabPage5.Text = "Add activity to project";
+            this.tabPage5.UseVisualStyleBackColor = true;
+            this.tabPage5.Click += new System.EventHandler(this.tabPage5_Click);
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Location = new System.Drawing.Point(411, 9);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(0, 13);
+            this.label19.TabIndex = 38;
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Location = new System.Drawing.Point(311, 12);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(94, 13);
+            this.label18.TabIndex = 37;
+            this.label18.Text = "Current User Role:";
+            // 
+            // comboBox11
+            // 
+            this.comboBox11.FormattingEnabled = true;
+            this.comboBox11.Location = new System.Drawing.Point(111, 6);
+            this.comboBox11.Name = "comboBox11";
+            this.comboBox11.Size = new System.Drawing.Size(152, 21);
+            this.comboBox11.TabIndex = 36;
+            this.comboBox11.SelectedIndexChanged += new System.EventHandler(this.comboBox11_SelectedIndexChanged);
+            // 
+            // label28
+            // 
+            this.label28.AutoSize = true;
+            this.label28.Location = new System.Drawing.Point(11, 9);
+            this.label28.Name = "label28";
+            this.label28.Size = new System.Drawing.Size(94, 13);
+            this.label28.TabIndex = 35;
+            this.label28.Text = "Available Projects:";
+            // 
+            // monthCalendar3
+            // 
+            this.monthCalendar3.Location = new System.Drawing.Point(294, 115);
+            this.monthCalendar3.Name = "monthCalendar3";
+            this.monthCalendar3.TabIndex = 34;
+            // 
+            // monthCalendar4
+            // 
+            this.monthCalendar4.Location = new System.Drawing.Point(15, 110);
+            this.monthCalendar4.Name = "monthCalendar4";
+            this.monthCalendar4.TabIndex = 33;
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.Location = new System.Drawing.Point(291, 93);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(91, 13);
+            this.label22.TabIndex = 32;
+            this.label22.Text = "Activity Finish day";
+            // 
+            // label23
+            // 
+            this.label23.AutoSize = true;
+            this.label23.Location = new System.Drawing.Point(12, 93);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(86, 13);
+            this.label23.TabIndex = 31;
+            this.label23.Text = "Activity Start day";
+            // 
+            // comboBox10
+            // 
+            this.comboBox10.FormattingEnabled = true;
+            this.comboBox10.Location = new System.Drawing.Point(388, 55);
+            this.comboBox10.Name = "comboBox10";
+            this.comboBox10.Size = new System.Drawing.Size(154, 21);
+            this.comboBox10.TabIndex = 28;
+            // 
+            // label25
+            // 
+            this.label25.AutoSize = true;
+            this.label25.Location = new System.Drawing.Point(385, 39);
+            this.label25.Name = "label25";
+            this.label25.Size = new System.Drawing.Size(29, 13);
+            this.label25.TabIndex = 27;
+            this.label25.Text = "User";
+            // 
+            // button6
+            // 
+            this.button6.Location = new System.Drawing.Point(195, 301);
+            this.button6.Name = "button6";
+            this.button6.Size = new System.Drawing.Size(158, 25);
+            this.button6.TabIndex = 26;
+            this.button6.Text = "Add activity to project";
+            this.button6.UseVisualStyleBackColor = true;
+            this.button6.Click += new System.EventHandler(this.button6_Click);
+            // 
+            // textBox5
+            // 
+            this.textBox5.Location = new System.Drawing.Point(206, 55);
+            this.textBox5.Name = "textBox5";
+            this.textBox5.Size = new System.Drawing.Size(158, 20);
+            this.textBox5.TabIndex = 25;
+            // 
+            // textBox6
+            // 
+            this.textBox6.Location = new System.Drawing.Point(15, 55);
+            this.textBox6.Name = "textBox6";
+            this.textBox6.Size = new System.Drawing.Size(162, 20);
+            this.textBox6.TabIndex = 24;
+            // 
+            // label26
+            // 
+            this.label26.AutoSize = true;
+            this.label26.Location = new System.Drawing.Point(203, 39);
+            this.label26.Name = "label26";
+            this.label26.Size = new System.Drawing.Size(97, 13);
+            this.label26.TabIndex = 23;
+            this.label26.Text = "Activity Description";
+            // 
+            // label27
+            // 
+            this.label27.AutoSize = true;
+            this.label27.Location = new System.Drawing.Point(12, 39);
+            this.label27.Name = "label27";
+            this.label27.Size = new System.Drawing.Size(72, 13);
+            this.label27.TabIndex = 22;
+            this.label27.Text = "Activity Name";
+            // 
+            // Progress
+            // 
+            this.Progress.HeaderText = "Progress";
+            this.Progress.Name = "Progress";
             // 
             // Tasks
             // 
@@ -464,28 +763,6 @@
             this.Tasks.Name = "Tasks";
             this.Tasks.ReadOnly = true;
             this.Tasks.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            // 
-            // Progress
-            // 
-            this.Progress.HeaderText = "Progress";
-            this.Progress.Name = "Progress";
-            // 
-            // comboBox7
-            // 
-            this.comboBox7.FormattingEnabled = true;
-            this.comboBox7.Location = new System.Drawing.Point(82, 20);
-            this.comboBox7.Name = "comboBox7";
-            this.comboBox7.Size = new System.Drawing.Size(121, 21);
-            this.comboBox7.TabIndex = 1;
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(20, 23);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(43, 13);
-            this.label13.TabIndex = 0;
-            this.label13.Text = "Project:";
             // 
             // Form1
             // 
@@ -509,7 +786,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
             this.tabPage4.ResumeLayout(false);
             this.tabPage4.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).EndInit();
+            this.tabPage5.ResumeLayout(false);
+            this.tabPage5.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -545,12 +823,6 @@
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.DataGridView dataGridView2;
-        private System.Windows.Forms.TabPage tabPage4;
-        private System.Windows.Forms.DataGridView dataGridView3;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Tasks;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Progress;
-        private System.Windows.Forms.ComboBox comboBox7;
-        private System.Windows.Forms.Label label13;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
         private System.Windows.Forms.DataGridViewTextBoxColumn UserName;
         private System.Windows.Forms.DataGridViewTextBoxColumn Role;
@@ -561,6 +833,39 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Roles;
         private System.Windows.Forms.DataGridViewTextBoxColumn TasksAssigned;
         private System.Windows.Forms.DataGridViewTextBoxColumn TasksState;
+        private System.Windows.Forms.TabPage tabPage4;
+        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Progress;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Tasks;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.Label label21;
+        private System.Windows.Forms.Label label20;
+        private System.Windows.Forms.MonthCalendar monthCalendar2;
+        private System.Windows.Forms.MonthCalendar monthCalendar1;
+        private System.Windows.Forms.TabPage tabPage5;
+        private System.Windows.Forms.ComboBox comboBox11;
+        private System.Windows.Forms.Label label28;
+        private System.Windows.Forms.MonthCalendar monthCalendar3;
+        private System.Windows.Forms.MonthCalendar monthCalendar4;
+        private System.Windows.Forms.Label label22;
+        private System.Windows.Forms.Label label23;
+        private System.Windows.Forms.ComboBox comboBox10;
+        private System.Windows.Forms.Label label25;
+        private System.Windows.Forms.Button button6;
+        private System.Windows.Forms.TextBox textBox5;
+        private System.Windows.Forms.TextBox textBox6;
+        private System.Windows.Forms.Label label26;
+        private System.Windows.Forms.Label label27;
+        private System.Windows.Forms.Label label19;
+        private System.Windows.Forms.Label label18;
     }
 }
 
